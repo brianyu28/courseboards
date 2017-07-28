@@ -10,20 +10,20 @@
 {% endblock %}
 
 {% block body %}
-    <h1>Courseboards</h1>
+<h1>Courseboards</h1>
 
-    {% call _.notice() %}
-        <strong>Welcome!</strong> Courseboards is currently in
-        development.
-        <a href="https://github.com/brianyu28/courseboards" target="_blank">Visit us on GitHub</a>
-        for more information!
-    {% endcall %}
+{% call _.notice() %}
+    <strong>Welcome!</strong> Courseboards is currently in
+    development.
+    <a href="https://github.com/brianyu28/courseboards" target="_blank">Visit us on GitHub</a>
+    for more information!
+{% endcall %}
 
-    <div class="row">
-        <input id="student-course" class="form-control" placeholder="Class Name" autofocus>
-        <br/>
-        <div class="centered">
-            <button id="join-student" class="btn btn-primary">Join</button>
-        </div>
+<div class="row">
+    <input id="student-course" class="form-control" placeholder="Class Name" autofocus>
+    <br/>
+    <div class="centered">
+        <button id="join-student" class="btn btn-primary">Join</button>
     </div>
+</div>
 {% endblock %}
