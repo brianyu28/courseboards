@@ -3,7 +3,7 @@ import os
 from flask import Flask, render_template, request
 from flask_jsglue import JSGlue
 
-app = Flask(__name__)
+application = app = Flask(__name__)
 JSGlue(app)
 
 @app.route("/")
