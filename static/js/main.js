@@ -15,13 +15,13 @@ Face.prototype.draw = function() {
         .attr('cy', this.cy)
         .attr('r', this.r);
 
-    this.left_eye = svg.append('circle')
+    this.left_eye = this.svg.append('circle')
         .attr('cx', this.cx - 0.35 * this.r)
         .attr('cy', this.cy - 0.3 * this.r)
         .attr('r', 0.1 * this.r)
         .style('fill', 'black');
 
-    this.right_eye = svg.append('circle')
+    this.right_eye = this.svg.append('circle')
         .attr('cx', this.cx + 0.35 * this.r)
         .attr('cy', this.cy - 0.3 * this.r)
         .attr('r', 0.1 * this.r)
@@ -35,7 +35,7 @@ Face.prototype.draw = function() {
         var path = 'M' + (this.cx - 0.5 * this.r) + ',' + (this.cy + 0.3 * this.r);
         path += ' Q' + (this.cx) + ',' + (this.cy + 0.8 * this.r);
         path += ' ' + (this.cx + 0.5 * this.r) + ',' + (this.cy + 0.3 * this.r);
-        this.mouth = svg.append('path')
+        this.mouth = this.svg.append('path')
             .attr('d', path)
             .style('stroke-width', 0.1 * this.r)
             .style('stroke', 'black')
@@ -43,7 +43,7 @@ Face.prototype.draw = function() {
     }
     else if (this.sentiment == NEUTRAL) {
         this.face.style('fill', 'yellow');
-        this.mouth = svg.append('line')
+        this.mouth = this.svg.append('line')
             .attr('x1', this.cx - 0.5 * this.r)
             .attr('y1', this.cy + 0.4 * this.r)
             .attr('x2', this.cx + 0.5 * this.r)
@@ -56,7 +56,7 @@ Face.prototype.draw = function() {
         var path = 'M' + (this.cx - 0.5 * this.r) + ',' + (this.cy + 0.5 * this.r);
         path += ' Q' + (this.cx) + ',' + (this.cy);
         path += ' ' + (this.cx + 0.5 * this.r) + ',' + (this.cy + 0.5 * this.r);
-        this.mouth = svg.append('path')
+        this.mouth = this.svg.append('path')
             .attr('d', path)
             .style('stroke-width', 0.1 * this.r)
             .style('stroke', 'black')
