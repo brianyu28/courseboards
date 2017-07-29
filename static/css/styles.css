@@ -1,3 +1,8 @@
+body {
+    background-color: #95afd8;
+    font-family: 'Lato', sans-serif;
+}
+
 .centered {
     margin: 0 auto;
     text-align: center;
