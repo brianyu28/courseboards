@@ -13,15 +13,18 @@
 
         <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <script src="https://d3js.org/d3.v4.min.js"></script>
         {{ JSGlue.include() }}
         {% block head %}
         {% endblock %}
     </head>
     <body>
+        {% block container %}
         <div class="container">
             <br/>
             {% block body %}
             {% endblock %}
         </div>
+        {% endblock %}
     </body>
 </html>

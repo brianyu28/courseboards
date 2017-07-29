@@ -1,9 +1,17 @@
 {% extends "layout.html" %}
 
+{% block head %}
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/student.js') }}"></script>
+{% endblock %}
+
 {% block title %}
     {{ course }}
 {% endblock %}
 
-{% block body %}
-<h1>Student Courseboard : {{ course }}<h1>
+{% block container %}
+
+<div id="student-board">
+</div>
+
 {% endblock %}
