@@ -8,7 +8,6 @@ $(document).ready(function() {
     board.draw();
 });
 
-var size_timeout;
 $(window).resize(function() {
     board.redraw(window.innerWidth, window.innerHeight);
 });
@@ -23,13 +22,13 @@ StudentBoard.prototype.draw = function() {
     var _this = this;
     this.canvas = d3.select(this.identifier);
     this.canvas.selectAll('*').remove();
-    canvas = this.canvas;
+    var canvas = this.canvas;
 
     this.svg = canvas.append('svg')
                      .attr('width', this.width)
                      .attr('height', this.height)
                      .classed('svg', true);
-    svg = this.svg;
+    var svg = this.svg;
 
     this.calculate_bounds();
     this.redraw(this.width, this.height);
@@ -50,7 +49,9 @@ StudentBoard.prototype.redraw = function(width, height) {
             'svg': this.svg,
             'cx': this.centers[i][0],
             'cy': this.centers[i][1],
-            'r': this.radius
+            'r': this.radius,
+            'room': $('#student-board').data('room'),
+            'broadcast': true
         });
         face.draw();
     }

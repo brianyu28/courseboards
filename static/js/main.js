@@ -1,12 +1,16 @@
 var POSITIVE = 1;
 var NEUTRAL = 0;
 var NEGATIVE = -1;
+
+var socket = io.connect('http://' + document.domain + ':' + location.port + '/');
 var Face = function(opts) {
     this.sentiment = opts.sentiment;
     this.svg = opts.svg;
     this.cx = opts.cx;
     this.cy = opts.cy;
     this.r = opts.r;
+    this.broadcast = opts.broadcast;
+    this.room = opts.room;
 }
 
 Face.prototype.draw = function() {
@@ -19,13 +23,15 @@ Face.prototype.draw = function() {
         .attr('cx', this.cx - 0.35 * this.r)
         .attr('cy', this.cy - 0.3 * this.r)
         .attr('r', 0.1 * this.r)
-        .style('fill', 'black');
+        .style('fill', 'black')
+        .style('pointer-events', 'none');
 
     this.right_eye = this.svg.append('circle')
         .attr('cx', this.cx + 0.35 * this.r)
         .attr('cy', this.cy - 0.3 * this.r)
         .attr('r', 0.1 * this.r)
-        .style('fill', 'black');
+        .style('fill', 'black')
+        .style('pointer-events', 'none');
 
     if (this.sentiment == POSITIVE) {
         this.face.style('fill', 'green');
@@ -39,7 +45,8 @@ Face.prototype.draw = function() {
             .attr('d', path)
             .style('stroke-width', 0.1 * this.r)
             .style('stroke', 'black')
-            .style('fill', 'none');
+            .style('fill', 'none')
+            .style('pointer-events', 'none');
     }
     else if (this.sentiment == NEUTRAL) {
         this.face.style('fill', 'yellow');
@@ -49,7 +56,8 @@ Face.prototype.draw = function() {
             .attr('x2', this.cx + 0.5 * this.r)
             .attr('y2', this.cy + 0.4 * this.r)
             .style('stroke-width', 0.1 * this.r)
-            .style('stroke', 'black');
+            .style('stroke', 'black')
+            .style('pointer-events', 'none');
     }
     else if (this.sentiment == NEGATIVE) {
         this.face.style('fill', 'red');
@@ -60,6 +68,25 @@ Face.prototype.draw = function() {
             .attr('d', path)
             .style('stroke-width', 0.1 * this.r)
             .style('stroke', 'black')
-            .style('fill', 'none');
+            .style('fill', 'none')
+            .style('pointer-events', 'none');
     }
+
+    this.face.on('click', function() {
+        socket.emit('reaction', {
+            'sentiment': this.sentiment,
+            'room': this.room
+        });
+    }.bind(this));
+}
+
+// Have the face only last for a certain number of milliseconds
+Face.prototype.duration = function(interval) {
+    var _this = this;
+    setTimeout(function() {
+        _this.face.remove();
+        _this.left_eye.remove();
+        _this.right_eye.remove();
+        _this.mouth.remove();
+    }, interval);
 }

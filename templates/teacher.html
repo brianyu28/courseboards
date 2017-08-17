@@ -1,9 +1,18 @@
 {% extends "layout.html" %}
 
+{% block head %}
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/teacher.js') }}"></script>
+{% endblock %}
+
 {% block title %}
     {{ course }}
 {% endblock %}
 
 {% block body %}
 <h1>Instructor Courseboard : {{ course }}</h1>
+
+<div id="teacher-board" data-room="{{ course }}">
+</div>
+
 {% endblock %}
