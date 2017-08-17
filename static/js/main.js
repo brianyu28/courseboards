@@ -2,7 +2,7 @@ var POSITIVE = 1;
 var NEUTRAL = 0;
 var NEGATIVE = -1;
 
-var socket = io.connect('http://' + document.domain + ':' + location.port + '/');
+var socket = io.connect('//' + document.domain + ':' + location.port + '/');
 var Face = function(opts) {
     this.sentiment = opts.sentiment;
     this.svg = opts.svg;
