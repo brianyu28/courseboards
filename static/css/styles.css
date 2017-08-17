@@ -3,6 +3,12 @@ body {
     font-family: 'Lato', sans-serif;
 }
 
+.main-heading {
+    text-align: center;
+    font-size: 55px;
+    padding-bottom: 30px;
+}
+
 .centered {
     margin: 0 auto;
     text-align: center;

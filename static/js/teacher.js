@@ -9,7 +9,7 @@ $(document).ready(function() {
     board.draw();
     socket.on('show_reaction', function(data) {
         // If the reaction isn't for this room, ignore it.
-        if (data['room'] != room)
+        if (data['room'].toLowerCase() != room.toLowerCase())
             return;
         board.show_reaction(data['sentiment']);
     });
@@ -45,11 +45,12 @@ TeacherBoard.prototype.redraw = function(width, height) {
 
 TeacherBoard.prototype.show_reaction = function(sentiment) {
     var radius = 30;
+    var diameter = 2 * radius;
     var face = new Face({
         'sentiment': sentiment,
         'svg': this.svg,
-        'cx': radius + (Math.random() * (this.width - 2 * radius)),
-        'cy': radius + (Math.random() * (this.height - 2 * radius)),
+        'cx': diameter + (Math.random() * (this.width - 2 * diameter)),
+        'cy': diameter + (Math.random() * (this.height - 2 * diameter)),
         'r': radius,
         'room': $('#teacher-board').data('room'),
         'broadcast': false
