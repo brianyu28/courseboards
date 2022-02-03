@@ -35,7 +35,7 @@ Face.prototype.draw = function() {
 
     if (this.sentiment == POSITIVE) {
         this.face.style('fill', 'green');
-        
+
         // Configure the path of the mouth.
         // Starting on the left, then to the bottom, then to the right.
         var path = 'M' + (this.cx - 0.5 * this.r) + ',' + (this.cy + 0.3 * this.r);
